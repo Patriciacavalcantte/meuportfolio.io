@@ -1,0 +1,345 @@
+/*============= GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&display=swap');
+
+/*============VARIAVEIS CSS ================*/
+
+:root {
+/*============== Colors ===================*/
+/*color mode HSL (hue, saturation, lightness)*/
+/*
+Background-blue: hsla(203, 57%, 97%, 1);
+Background-rose: hsla(0, 100%, 98%, 1);
+Títulos-rose: hsla(231, 73%, 22%, 1);
+Títulos e parágrafos: hsla(231, 73%, 22%, 1);
+Buttons e menu: hsla(273, 90%, 46%, 1);
+Buttons e menu-rose: hsla(345, 90%, 88%, 1);
+*/
+--background-blue-color: hsla(203, 57%, 97%, 1);
+--background-rose-color: hsla(0, 100%, 98%, 1);
+--background-blue-detalhes: hsla(188, 41%, 63%, 1);
+--body-color-ligth: #fff;
+--title-color: hsla(231, 73%, 22%, 1);
+--text-color: hsla(231, 73%, 22%, 1);
+--buttons-menu:hsla(273, 90%, 46%, 1);
+--buttons-menu-rose:hsla(345, 90%, 88%, 1);
+
+/*============== Font and tipografia ===================*/
+/* .5rem = 8px / 1rem = 16px...*/
+--body-font:'Poppins', sans-serif;
+--biggest-font-size: 3.75rem;
+--h1-font-size: 2.188rem;
+--normal-font-size:0.875
+--small-font-size:.813rem;
+--smaller-font-size: .75rem;
+--tiny-font-size:.625rem;
+
+/*=============== Font weight ===========*/
+--font-medium: 500;
+--font-small: 400;
+--font-semibold: 600;
+/*================ z index ========== */
+--z-tooltip:10;
+--z-fixed: 100;
+--z-modal: 1000;
+} 
+
+/*================ Responsive typography ========== */
+@media screen and (min-width: 968px) {
+  :root {
+
+--biggest-font-size: 5.5rem;
+--h1-font-size: 1.25rem;
+--h2-font-size: 1.5rem;
+--h3-font-size: 1.25rem;
+--normal-font-size: 1.5rem;
+--small-font-size:.875rem;
+  }
+}
+@media screen and (max-width: 1200px) {
+  :root {
+
+--biggest-font-size: 2.5rem;
+--h1-font-size: 1.25rem;
+--h2-font-size: 1.5rem;
+--h3-font-size: 1.25rem;
+--normal-font-size: .875rem;
+--small-font-size:.875rem;
+  }
+
+
+  @media screen and (max-width: 600px) {
+    :root {
+  
+  --biggest-font-size: 1.5rem;
+  --h1-font-size: 1.0rem;
+  --normal-font-size: .875rem;
+  --small-font-size:.875rem;
+    }
+}
+}
+/*=========== BASE ==========*/
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body,
+button,
+input,
+textarea {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+body{
+  background-color: var(--body-color-ligth);
+  color: var(--text-color);
+
+}
+
+h1, h2, h3{
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+button {
+  margin-top: 20px;
+  cursor: pointer;
+  border: solid 3px var(--buttons-menu-rose);
+  border-radius: 10px;
+  max-width: 400px;
+  outline: none;
+  background: none;
+  padding: 10px;
+}
+
+.button:hover{
+  background:hsla(188, 41%, 63%, 1);
+  transform: translateX(15px);
+
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*=========== MENU ==========*/
+#logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#header {
+  box-sizing: border-box;
+  height: 95px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--background-blue-color)
+}
+
+#menu {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+}
+
+#menu a {
+  display: block;
+  padding: 0.5rem;
+}
+
+#btn-mobile {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  #menu {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 75px;
+    right: 0px;
+    background: var(--background-blue-color);
+    transition: 0.6s;
+    z-index: 1000;
+    height: 0px;
+    visibility: hidden;
+    overflow-y: hidden;
+  }
+  #nav.active #menu {
+    height: calc(100vh - 70px);
+    visibility: visible;
+    overflow-y: auto;
+  }
+  #menu a {
+    padding: 1rem 0;
+    margin: 0 1rem;
+    border-bottom: 2px solid var(--text-color);
+  }
+  #btn-mobile {
+    display: flex;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    gap: 0.5rem;
+  }
+  #hamburger {
+    border-top: 2px solid;
+    width: 20px;
+  }
+  #hamburger::after,
+  #hamburger::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+    margin-top: 5px;
+    transition: 0.3s;
+    position: relative;
+  }
+  #nav.active #hamburger {
+    border-top-color: transparent;
+  }
+  #nav.active #hamburger::before {
+    transform: rotate(135deg);
+  }
+  #nav.active #hamburger::after {
+    transform: rotate(-135deg);
+    top: -7px;
+  }
+}
+
+hr{
+  border-top: 5px solid var(--buttons-menu-rose);
+}
+
+
+
+/*=========== MAIN-APRESENTACAO ==========*/
+.container_geral{
+  background-color: var(--background-rose-color);
+  border: 3rem solid var(--body-color-ligth);
+}
+@media screen and (max-width: 1200px) {
+  .container_geral {
+    border: none;
+  }
+ }
+.container-grid {
+  margin-left: 50px;
+  max-width: 100%;
+  margin-top: 30px;
+  display: grid;
+ 
+}
+.container-grid__main {
+ display:flex;
+justify-content: center;
+margin-right: 100px;
+}
+.container-flex{
+  display: flex;
+  margin-left: 40px;
+  align-items: center;
+}
+.card-text__texto{
+  max-width: 95vh;
+  text-align: center;
+}
+
+
+.button__texto{
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  margin-left: 40px;
+}
+
+.big-font{
+  font-size: var(--biggest-font-size);
+}
+
+.scroll{
+  position: relative;
+  padding: 80px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+}
+.dot {
+  color: var(--buttons-menu-rose);
+}
+.computador_icon {
+padding: 5%;
+margin-top: 100px;
+}
+.retangulo_hr {
+  border-top: 6px solid var(--buttons-menu-rose);
+  width: 20%;
+}
+
+/*=========== Work ==========*/
+.card-text{
+  margin-top: 20px;
+  padding: 20px;
+  }
+  .card-text2{
+    margin-top:100px;
+  
+  }
+  .card-text3{
+    margin-top: 105px;
+  }
+  .card-text3_texto{
+    margin-top: 105px;
+  }
+  .work_together{
+padding: 5%;
+  }
+/*=========== Mobile ==========*/
+@media screen and (max-width: 790px) {
+  .container-flex {
+   display: flex;
+   flex-direction: column-reverse;
+    justify-content: center;
+  
+  }
+
+}
+@media screen and (max-width: 790px) {
+  .container-grid__main {
+   display: flex;
+   flex-direction: column-reverse;
+    justify-content: center;
+  
+  }
+
+}
+/*=========== Footer ==========*/
+.footer__social{
+  display: flex;
+  margin-top: 50px;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/*=========== Portfólio ==========*/
